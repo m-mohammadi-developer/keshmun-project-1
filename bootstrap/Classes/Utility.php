@@ -1,5 +1,7 @@
 <?php
 
+namespace Classes;
+
 class Utility
 {
 
@@ -23,5 +25,10 @@ class Utility
     public static function site_url($name = '')
     {
         return SITE_URL . DS . $name;
+    }
+
+    public static function redirect($location = '')
+    {
+        header("Location: " . $location);
     }
 }
