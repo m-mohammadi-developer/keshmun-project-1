@@ -1,5 +1,6 @@
 <?php
 
+use Classes\Product;
 use Classes\Utility;
 
 include "bootstrap/init.php";

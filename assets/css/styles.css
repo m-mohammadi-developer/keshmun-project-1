@@ -20,6 +20,7 @@ a {
 /** header */
 
 .header {
+  top: 0;
   background-color: #fff;
   box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
   position: fixed;
@@ -148,3 +149,99 @@ a {
   }
 }
 /** end header */
+
+
+
+.container {
+  padding: 10px;
+  margin: 100px 40px;
+  direction: rtl;
+  text-align: right;
+  overflow: auto;
+}
+/*
+- - - - basic prettyfying css - - - */
+table {
+  font-family: iransans, sans-serif;
+  border: 1px solid #928585e6;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+th,
+td {
+  padding: 10px;
+}
+tr td {
+  vertical-align: middle;
+}
+
+.first {
+  text-align: center;
+  border-left: 1px solid white;
+}
+
+thead th {
+  text-align: right;
+}
+
+tbody tr:nth-of-type(odd) {
+  background: #e0e0e0;
+}
+
+.table-td-overflow {
+      word-break: break-all;
+      border-left: .3px solid white;
+      border-right: .3px solid white;
+}
+
+
+/* 
+- - - Responsivise at breakpoint - - - - */
+@media (max-width: 600px) {
+
+  /* make tds into single column full width rows */
+  tr,
+  td {
+      display: block;
+      width: 100%;
+      padding: 5px;
+  }
+
+  /* hide table head */
+  thead {
+      display: none;
+  }
+
+  /* place data attribute before td as a label */
+  td[data-header-title]:before {
+      content: attr(data-header-title)':';
+      display: block;
+      color: #666;
+      /* labels will stack by default but optionally float to left */
+      float: left;
+      width: 100px;
+
+  }
+
+  tbody {
+      border-collapse: collapse;
+      display: block;
+  }
+
+  tbody tr {
+      margin-bottom: 20px;
+      border-bottom: 10px solid #222222;
+      display: block;
+  }
+
+  /* unset background used on desktop view */
+  tbody tr:nth-of-type(odd) {
+      background: transparent;
+  }
+
+  tr td:nth-of-type(odd) {
+      background: #eee;
+  }
+
+}
