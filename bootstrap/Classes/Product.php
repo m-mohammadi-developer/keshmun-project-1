@@ -17,21 +17,29 @@ class Product extends Main
         $created_at;
         
     
-    public static function findProductStorage(int $product_id, int $storage_id)
+    public static function findProductStorages(int $product_id)
     {
         global $conn;
-        $sql = "select * from storage_products where storage_id = $storage_id AND product_id ";
-        $storage_products = $conn->query($sql);
-
+        $sql = "select * from storage_products where product_id = $product_id";
+        $storage_products_pivot = $conn->query($sql);
+        
         // store ids of products
-        $product_ids = [];
-        foreach ($storage_products as $row) {
-            $product_ids[] = $row->id;
+        $storage_ids = [];
+        foreach ($storage_products_pivot as $row) {
+            $storage_ids[] = $row->storage_id;
         }
 
-        $storage_products = Product::findAllIn('id', $product_ids);
+        $poroduct_storages = Storage::findAllIn('id', $storage_ids);
 
-        return $storage_products;
+        foreach ($poroduct_storages as $storage) {
+            foreach ($storage_products_pivot as $pivot) {
+                if ($pivot->storage_id == $storage->id) {
+                    $storage->count_in_storage = $pivot->product_count;
+                }
+            }
+        }
+
+        return $poroduct_storages;
     }
 
 

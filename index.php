@@ -7,6 +7,7 @@ use Classes\Utility;
 include "bootstrap/init.php";
 
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'login') {
     
     if (!$session->loginUser($_POST['username'], $_POST['password'])) {

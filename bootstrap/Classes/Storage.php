@@ -26,7 +26,7 @@ class Storage extends Main
         // store ids of products
         $product_ids = [];
         foreach ($storage_products_pivot as $row) {
-            $product_ids[] = $row->id;
+            $product_ids[] = $row->product_id;
         }
 
         $storage_products = Product::findAllIn('id', $product_ids);

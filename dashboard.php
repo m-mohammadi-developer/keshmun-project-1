@@ -91,6 +91,12 @@ if ($page == 'products') {
         include Utility::view('storage.storage-products');
     }
     
+} else if ($page == 'product-storages') {
     
+    if (isset($_GET['product-id'])) {
+        $storages = Product::findProductStorages($_GET['product-id'] ?? 1);
+        $product = Product::findById($_GET['product-id'] ?? 1);
+        include Utility::view('product.product-storages');
+    }
     
 }
