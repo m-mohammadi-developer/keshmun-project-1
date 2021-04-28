@@ -20,7 +20,7 @@ class Storage extends Main
     public static function findStorageProducts($sotrage_id)
     {   
         global $conn;
-        $sql = "select * from storage_products where storage_id = $sotrage_id";
+        $sql = "select * from storages_products where storage_id = $sotrage_id";
         $storage_products_pivot = $conn->query($sql);
 
         // store ids of products

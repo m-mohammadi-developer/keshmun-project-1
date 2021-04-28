@@ -35,13 +35,13 @@
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label class="form-label" for="input5">توضیحات</label>
-                                <textarea name="product_description" id="" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="product_description" id="" cols="30" rows="10" class="form-control" placeholder="لطفا توضیحات محصول را وارد کنید"></textarea>
                             </fieldset>
                         </div>
                     </div>
                     <div>
                         <div class="center-text button-area">
-                            <button type="submit" class="btn btn-cancel">افزودن</button>
+                            <button type="submit" class="btn btn-cancel">افزودن محصول جدید</button>
                         </div>
 
                     </div>

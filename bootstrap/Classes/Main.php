@@ -81,9 +81,9 @@ class Main
         
         // die("Select * from ". static::$db_name . " where " . implode(', ', $items) . " LIMIT {$limit} ORDER BY " . static::$auto_inc . " " . $order);
         if (!isset($limit)) {
-            return static::findQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . " ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
+            return static::findQuery("Select * from ". static::$db_name . " where " . implode(' and ', $items) . " ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
         } else {
-            return static::findQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . " ORDER BY " . static::$auto_inc . " $order LIMIT {$limit}", $values, static::$class_name);
+            return static::findQuery("Select * from ". static::$db_name . " where " . implode(' and ', $items) . " ORDER BY " . static::$auto_inc . " $order LIMIT {$limit}", $values, static::$class_name);
         }
     }
 

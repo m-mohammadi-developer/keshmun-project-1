@@ -18,9 +18,7 @@
     ?>
 
     <div class="container">
-        <a class="btn" href="<?= Classes\Utility::site_url('dashboard.php?page=add-product') ?>">افزودن محصول</a>
-        <br>
-        <br>
+        <h3 class="center-text">لیست محصولات</h3>
         <table width="100%">
             <thead>
                 <tr>

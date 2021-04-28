@@ -29,19 +29,19 @@
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label class="form-label" for="input4">نام</label>
-                                <input type="text" name="storage_name" class="form-control" id="input4" placeholder="نام یا عنوان محصول را وارد کنید" required>
+                                <input type="text" name="storage_name" class="form-control" id="input4" placeholder="نام انبار را وارد کنید" required>
                             </fieldset>
                         </div>
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label class="form-label" for="input5">آدرس</label>
-                                <input type="text" name="storage_address" class="form-control" id="input4" placeholder="نام یا عنوان محصول را وارد کنید" required>
+                                <input type="text" name="storage_address" class="form-control" id="input4" placeholder="آدرس انبار را وارد کنید" required>
                             </fieldset>
                         </div>
                     </div>
                     <div>
                         <div class="center-text button-area">
-                            <button type="submit" class="btn btn-cancel">افزودن</button>
+                            <button type="submit" class="btn btn-cancel">افزودن انبار</button>
                         </div>
 
                     </div>

@@ -18,7 +18,8 @@
     ?>
 
     <div class="container">
-        <table cellpadding="0" cellspacing="0" width="100%">
+        <h3 class="center-text">لیست انبار ها</h3>
+        <table width="100%">
             <thead>
                 <tr>
                     <th>آیدی</th>
