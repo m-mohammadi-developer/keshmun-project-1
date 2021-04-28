@@ -26,6 +26,7 @@
                     <th>نام</th>
                     <th>آدرس</th>
                     <th>تاریخ ثبت</th>
+                    <th style="width: 20%;">عملیات</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,10 @@
                     <td><?= $storage->name ?></td>
                     <td class="table-td-overflow"><?= $storage->address ?></td>
                     <td><?= $storage->created_at ?></td>
+                    <td>
+                        <a href="#" class="btn btn-danger">حذف</a>
+                        <a href="#" class="btn btn-info">ویرایش</a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
                 <?php endif; ?>
