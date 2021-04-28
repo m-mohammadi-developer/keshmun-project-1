@@ -28,6 +28,5 @@ if (!$session->isUserLoggedIn())
     include Utility::view('login');
 
 } else {
-    include Utility::view('index');
-    
+    Utility::redirect('dashboard.php');
 }

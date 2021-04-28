@@ -63,7 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-$page = $_GET['page'] ?? 'products';
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = '';
+}
 
 switch ($page) {
     case 'products':
@@ -105,32 +109,13 @@ switch ($page) {
         include Utility::view('storage.pivot-storage-product');
         break;
 
+    case '':
+    case 'dashboard':
+        include Utility::view('dashboard');
+        break;
+
     default:
-        Utility::redirect('index.php');
+        include Utility::view('404');
+        
 }
 
-/* if ($page == 'products') {
-    $products = Product::findAll();
-    include Utility::view('product.products');
-} else if ($page == 'add-product') {
-    include Utility::view('product.add-product');
-} else if ($page == 'storages') {
-    $storages = Storage::findAll();
-    include Utility::view('storage.storages');
-} else if ($page == 'add-storage') {
-    include Utility::view('storage.add-storage');
-} else if ($page == 'storage-products') {
-
-    if (isset($_GET['storage-id'])) {
-        $products = Storage::findStorageProducts($_GET['storage-id'] ?? 1);
-        $storage = Storage::findById($_GET['storage-id'] ?? 1);
-        include Utility::view('storage.storage-products');
-    }
-} else if ($page == 'product-storages') {
-
-    if (isset($_GET['product-id'])) {
-        $storages = Product::findProductStorages($_GET['product-id'] ?? 1);
-        $product = Product::findById($_GET['product-id'] ?? 1);
-        include Utility::view('product.product-storages');
-    }
-} */
