@@ -5,6 +5,7 @@ namespace Classes;
 class Session 
 {
     private $users;
+    public $errors = [];
 
     public function __construct($users = [])
     {
@@ -48,7 +49,27 @@ class Session
         return true;
     }
 
-    
+    // public function getErrors()
+    // {
+    //     $errors = $_SESSION['errors'];
+    //     unset($_SESSION['errors']);
+    //     return $errors;
+    // }
+
+    // public function setError($key, $value)
+    // {
+    //     $_SESSION['errors'][] = [$key => $value];
+    // }
+
+    // public function getError($key)
+    // {
+    //     foreach ($_SESSION['errors'] as $index => $error) {
+    //         if (array_key_exists($key, $error)) {
+    //             unset($_SESSION['errors'][$index]);
+    //             return $error;
+    //         }
+    //     }
+    // }
 }
 
 

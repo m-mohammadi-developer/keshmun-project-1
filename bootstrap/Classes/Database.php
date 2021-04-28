@@ -93,4 +93,9 @@ class Database
         // return true or false
         // return $stmt->rowCount();
     }
+
+    public function query($sql)
+    {
+        return $this->conn->query($sql)->fetchAll(PDO::FETCH_OBJ);
+    }
 }

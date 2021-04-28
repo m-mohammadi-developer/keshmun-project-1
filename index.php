@@ -1,13 +1,18 @@
 <?php
 
 use Classes\Product;
+use Classes\Storage;
 use Classes\Utility;
 
 include "bootstrap/init.php";
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'login') {
     
-    $session->loginUser($_POST['username'], $_POST['password']);
+    if (!$session->loginUser($_POST['username'], $_POST['password'])) {
+        $errors['login_error'] = 'نام کاربری یا پسورد اشتباه می باشد';
+    }
+
    
 }
 

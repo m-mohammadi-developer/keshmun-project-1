@@ -97,6 +97,17 @@ class Main
     }
 
     /**
+     * find multiple by id
+     * 
+     */
+    public static function findAllIn(string $column = 'id', array $values)
+    {
+        $ids = implode(",", $values);
+        return static::findAllQuery("Select * from " . static::$db_name . " where $column in ($ids)", [], static::$class_name);
+    }
+
+
+    /**
      * DB Connectors
      */
     protected static function findAllQuery(string $sql, array $values = [], $class)
