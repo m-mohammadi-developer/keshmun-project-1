@@ -1,25 +1,36 @@
 <?php
 include "../bootstrap/init.php";
 
+use Classes\Product;
 use Classes\StorageProduct;
 
 $action = $_POST['action'] ?? '';
 
+
+$error_response = [
+    'type' => 'error',
+    'data' => 'مشکلی در اجرای درخواست بوجود آمد'
+];
+
 switch ($action) {
     case 'relate_product_storage':
+
         $product_id = $_POST['product_id'] ?? null;
         $storage_id = $_POST['storage_id'] ?? null;
         $product_count = $_POST['product_count'] ?? null;
 
         // validate the inputs
         if (empty($product_id) || !is_numeric($product_id) || $product_id < 1) {
-            return 'لطفا فیلد محصول را به درستی انتخاب کنید';
+            echo 'لطفا فیلد محصول را به درستی انتخاب کنید';
+            return;
         }
         if (empty($storage_id) || !is_numeric($storage_id) || $storage_id < 1) {
-            return 'لطفا فیلد انبار را به درستی انتخاب کنید';
+            echo 'لطفا فیلد انبار را به درستی انتخاب کنید';
+            return ;
         }
         if (empty($product_count) || !is_numeric($product_count) || $product_count < 1) {
-            return 'لطفا فیلد تعداد را به درستی وارد نمایید';
+            echo 'لطفا فیلد تعداد را به درستی وارد نمایید';
+            return ;
         }
 
         // if the record found then update it otherwise create it
@@ -53,6 +64,31 @@ switch ($action) {
             return;
         }
         echo $message;
-        return;
+        return ;
+    
+        
+    case 'edit-product':
+        // validate the inputs
+        $product_id = $_POST['product_id'] ?? null;
+        if (empty($product_id) || !is_numeric($product_id) || $product_id < 1) {
+            echo 'اطلاعات به درستی دریافت نشد لطفا صفحه را رفرش کرده و دوباره تلاش نمایید';
+            return;
+        }
+
+        $product = Product::findById($product_id);
+        if ($product) {
+            $product_json = json_encode($product);
+            $response = [
+                'type' => 'success',
+                'data' => $product_json
+            ];
+            echo (json_encode($response));
+            return ;
+        }
+        return ;
+    
+    default: 
+        echo 'درخواست نامعتبر';
+        return ;
 }
 

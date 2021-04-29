@@ -548,3 +548,7 @@ input, select, button, textarea {
 }
 
 
+.error {
+  border-right: 6px solid #8120a1 !important;
+  border-radius: 8px !important;
+}

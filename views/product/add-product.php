@@ -18,7 +18,7 @@
     include Classes\Utility::view('partials.header');
     ?>
     <div class="container">
-    <form method="POST" action="<?= Classes\Utility::site_url('dashboard.php?action=add-product') ?>">
+    <form method="POST" action="<?= Classes\Utility::site_url('dashboard.php?action=add-product&page=add-product') ?>">
         <div id="form-main-container">
             <div id="form-area">
                 <div id="form-title">
@@ -26,6 +26,14 @@
                 </div>
                 <div id="form-body">
                     <div>
+                        
+                        <?php if(!empty($errors['add-product'])): ?>
+                        <div class="col-12 error">
+                            <?php foreach ($errors['add-product'] as $error): ?>
+                                <h6 style="color: #cd3232e8; margin-right: 10px;"><?= $error ?></h6>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php endif; ?>
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label class="form-label" for="input4">نام</label>
