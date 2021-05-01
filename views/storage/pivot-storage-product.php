@@ -99,7 +99,8 @@
                 method: form.attr('method'),
                 data: form.serialize(),
                 success: function(response) {
-                    alert(response);
+                    const responseInArray = JSON.parse(response);
+                    alert(responseInArray['data']);
                 }
             });
         });
