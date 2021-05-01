@@ -2,6 +2,7 @@
 include "../bootstrap/init.php";
 
 use Classes\Product;
+use Classes\Storage;
 use Classes\StorageProduct;
 
 $action = $_POST['action'] ?? '';
@@ -26,11 +27,11 @@ switch ($action) {
         }
         if (empty($storage_id) || !is_numeric($storage_id) || $storage_id < 1) {
             echo 'لطفا فیلد انبار را به درستی انتخاب کنید';
-            return ;
+            return;
         }
         if (empty($product_count) || !is_numeric($product_count) || $product_count < 1) {
             echo 'لطفا فیلد تعداد را به درستی وارد نمایید';
-            return ;
+            return;
         }
 
         // if the record found then update it otherwise create it
@@ -46,7 +47,6 @@ switch ($action) {
             $storage_product->product_count = $product_count;
 
             $message = 'اطلاعات با موفقیت بروزرسانی شد';
-
         } else {
 
             $storage_product = new StorageProduct;
@@ -64,9 +64,9 @@ switch ($action) {
             return;
         }
         echo $message;
-        return ;
-    
-        
+        return;
+
+
     case 'edit-product':
         // validate the inputs
         $product_id = $_POST['product_id'] ?? null;
@@ -83,12 +83,32 @@ switch ($action) {
                 'data' => $product_json
             ];
             echo (json_encode($response));
-            return ;
+            return;
         }
-        return ;
-    
-    default: 
-        echo 'درخواست نامعتبر';
-        return ;
-}
+        return;
 
+    case 'edit-storage':
+        // validate the inputs
+        $storage_id = $_POST['storage_id'] ?? null;
+        if (empty($storage_id) || !is_numeric($storage_id) || $storage_id < 1) {
+            echo 'اطلاعات به درستی دریافت نشد لطفا صفحه را رفرش کرده و دوباره تلاش نمایید';
+            return;
+        }
+
+        $srorage = Storage::findById($storage_id);
+        if ($srorage) {
+            $srorage_json = json_encode($srorage);
+            $response = [
+                'type' => 'success',
+                'data' => $srorage_json
+            ];
+            echo (json_encode($response));
+            return;
+        } 
+        echo json_encode($error_response);
+        return ;
+        
+    default:
+        echo 'درخواست نامعتبر';
+        return;
+}

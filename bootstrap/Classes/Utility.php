@@ -39,4 +39,13 @@ class Utility
         echo "</pre>";
         die;
     }
+
+    public static function errorInJson(string $error)
+    {
+        $error = [
+            'type' => 'error',
+            'error' => $error
+        ];
+        return json_encode($error);
+    }
 }

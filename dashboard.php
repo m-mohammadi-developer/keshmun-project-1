@@ -72,6 +72,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     }
+
+    if ($action == 'edit-storage') {
+        if (empty($_POST['storage_name'])) {
+            $errors['edit-storage'][] = 'نام انبار نباید خالی باشد';
+        }
+        if (empty($_POST['storage_address'])) {
+            $errors['edit-storage'][] = 'آدرس انبار نباید خالی باشد';
+        }
+        if (empty($_POST['storage_id'])) {
+            $errors['edit-storage'][] = 'آیدی محصول دستکاری شده است';
+        }
+
+        if (!isset($errors['edit-storage'])) {
+            $storage = Storage::findById($_POST['storage_id']);
+            $storage->name = $_POST['storage_name'];
+            $storage->address = $_POST['storage_address'];
+            
+            if ($storage->save()) {
+                Utility::redirect('dashboard.php?page=storages');
+            }
+        }
+    }
 }
 
 
