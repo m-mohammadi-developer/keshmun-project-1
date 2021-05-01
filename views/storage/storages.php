@@ -116,7 +116,6 @@
                 },
                 success: function(response) {
                     const resp = JSON.parse(response);
-                    console.log(response);
                     if (resp['type'] === 'success') {
                         // show modal for edit
                         $("#editModal").fadeIn(200);
@@ -126,6 +125,8 @@
                         $("#s-name").val(storage['name']);
                         $("#s-address").val(storage['address']);
 
+                    } else if (resp['type'] === 'error') {
+                        alert(resp['data']);
                     } else {
                         alert('مشکلی پیش آمد صحفحه را رفرش کرده و دوباره تلاش کنید')
                     }

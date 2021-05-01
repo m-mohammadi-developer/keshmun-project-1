@@ -40,12 +40,12 @@ class Utility
         die;
     }
 
-    public static function errorInJson(string $error)
+    public static function messageInJson(string $message, string $type = 'error')
     {
-        $error = [
-            'type' => 'error',
-            'error' => $error
+        $message = [
+            'type' => $type,
+            'data' => $message
         ];
-        return json_encode($error);
+        return json_encode($message);
     }
 }

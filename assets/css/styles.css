@@ -557,7 +557,7 @@ input, select, button, textarea {
 /* Modal Overlay Styles */
 
 .modal-overlay {
-  position: absolute;
+  position: fixed;
   z-index: 999;
   background: rgba(0, 0, 0, 0.7);
   top: 0;
@@ -568,6 +568,7 @@ input, select, button, textarea {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
 }
 
 .modal-overlay .modal {

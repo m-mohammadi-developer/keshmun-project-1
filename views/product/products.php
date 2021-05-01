@@ -129,7 +129,10 @@
                         $("#p-name").val(product['name']);
                         $("#p-description").html(product['description']);
 
-                    } else {
+                    } else if (resp['type'] === 'error') {
+                        alert(resp['data']);
+                    } 
+                    else {
                         alert('مشکلی پیش آمد صحفحه را رفرش کرده و دوباره تلاش کنید')
                     }
                 }
