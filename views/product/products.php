@@ -14,6 +14,7 @@
 
 
     <?php
+    use Classes\Utility;
     include Classes\Utility::view('partials.header');
     ?>
 
@@ -50,8 +51,9 @@
                             <td style="width: 160px;"><?= $product->created_at ?></td>
 
                             <td>
-                                <button data-prid="<?= $product->id ?>" class="btn btn-danger">حذف</button>
+                                <a href="<?= Utility::site_url("dashboard.php?method=get&action=remove-product&product-id=$product->id") ?>" class="btn btn-danger" onclick="return confirm('با حذف محصول تمامی اطلاعات ثبت شده محصول در انبار های ثبت شده حذف می شود آیا موافقید؟')">حذف</a>
                                 <button data-prid="<?= $product->id ?>" class="btn btn-info edit-button">ویرایش</button>
+                                <a href="<?= Utility::site_url("dashboard.php?page=product-storages&product-id={$product->id}") ?>" class="btn btn-secandry" style="width: auto;">انبار ها</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -131,8 +133,7 @@
 
                     } else if (resp['type'] === 'error') {
                         alert(resp['data']);
-                    } 
-                    else {
+                    } else {
                         alert('مشکلی پیش آمد صحفحه را رفرش کرده و دوباره تلاش کنید')
                     }
                 }

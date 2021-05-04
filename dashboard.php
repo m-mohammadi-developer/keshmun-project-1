@@ -9,11 +9,14 @@ $errors = [];
 
 if (!$session->isUserLoggedIn()) {
     Utility::redirect('index.php');
+    exit();
 }
+
+// Utility::dd($_SESSION);
 
 
 // check and handle post methods
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $session->isUserLoggedIn()) {
     $action = $_GET['action'] ?? '';
 
     if ($action == 'add-product') {
@@ -102,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // check and handle get actions
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'get') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'get' && $session->isUserLoggedIn()) {
     $action = $_GET['action'] ?? '';
 
     if ($action == 'remove-storage') {
@@ -114,6 +117,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'get') {
 
                 $storage->delete();
                 Utility::redirect('dashboard.php?page=storages');
+
+            }
+
+
+        }
+    }
+
+    if ($action == 'remove-product') {
+        $product_id = $_GET['product-id'] ?? '';
+
+        if (!empty($product_id) && is_numeric($product_id)) {
+
+            if ($product = Product::findById($product_id)) {
+                
+                $product->delete();
+                Utility::redirect('dashboard.php?page=products');
 
             }
 

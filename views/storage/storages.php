@@ -14,10 +14,8 @@
 
 
     <?php
-
-                                    use Classes\Utility;
-
-include Classes\Utility::view('partials.header');
+    use Classes\Utility;
+    include Classes\Utility::view('partials.header');
     ?>
 
     <?php if (!empty($errors['edit-storage'])) : ?>
