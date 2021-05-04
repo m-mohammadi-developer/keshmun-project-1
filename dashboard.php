@@ -121,6 +121,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'get') {
         }
     }
 
+    if ($action == 'remove-product') {
+        $product_id = $_GET['product-id'] ?? '';
+
+        if (!empty($product_id) && is_numeric($product_id)) {
+
+            if ($product = Product::findById($product_id)) {
+                
+                $product->delete();
+                Utility::redirect('dashboard.php?page=products');
+
+            }
+
+
+        }
+    }
+
 }
 
 
