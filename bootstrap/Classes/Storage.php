@@ -18,7 +18,7 @@ class Storage extends Main
 
 
     public static function findStorageProducts($sotrage_id)
-    {   
+    {
         global $conn;
         $sql = "select * from storages_products where storage_id = $sotrage_id";
         $storage_products_pivot = $conn->query($sql);
@@ -43,28 +43,23 @@ class Storage extends Main
     }
 
 
-
-
-    public static function findStorageProducts2(int $storage_id)
+    public function delete()
     {
-        global $conn;
-        // find storage and product
+        try {
+            parent::delete();
 
-        // $sql = "
-        //         SELECT
-        //         products.id,
-        //         products.name,
-        //         products.description
-        //             FROM products
-        //             LEFT JOIN storage_products ON products.id = storage_products.product_id
-        //             LEFT JOIN storages ON storages.id = storage_products.storage_id
-        //             AND storages.id = $storage_id
-        //     ";
+            // remove product's information from pivot table
+            $storage_products = StorageProduct::findAllWhere([
+                ['storage_id', '=', $this->id]
+            ]);
 
-        // $sql = "SELECT * FROM products";
-
-        // Utility::dd($conn->query($sql));
-        // compact them
-
+            foreach ($storage_products as $sp) {
+                $sp->delete();
+            }
+            return true;
+            
+        } catch (\PDOException $e) {
+            return false;
+        }
     }
 }

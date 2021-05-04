@@ -512,6 +512,13 @@ textarea {
 
 }
 
+.btn-secandry {
+  background-color: #8400ff;
+  border-color: #8400ff;
+  border-radius: 8px;
+
+}
+
 .btn-cancel {
   background-color: #8120a1;
   border-color: #8120a1;
@@ -631,7 +638,7 @@ input, select, button, textarea {
 }
 
 input[type="submit"] {
-  background: #007bec;
+  background: #8400ff;
   color: #fff;
   cursor: pointer;
 }

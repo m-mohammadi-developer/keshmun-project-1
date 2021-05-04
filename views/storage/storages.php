@@ -14,7 +14,10 @@
 
 
     <?php
-    include Classes\Utility::view('partials.header');
+
+                                    use Classes\Utility;
+
+include Classes\Utility::view('partials.header');
     ?>
 
     <?php if (!empty($errors['edit-storage'])) : ?>
@@ -47,10 +50,16 @@
                             <td class="first"><?= $storage->id ?></td>
                             <td><?= $storage->name ?></td>
                             <td class="table-td-overflow"><?= $storage->address ?></td>
-                            <td><?= $storage->created_at ?></td>
-                            <td>
-                                <a href="#" class="btn btn-danger">حذف</a>
+                            <td style="width: 18%;"><?= $storage->created_at ?></td>
+                            <td style="width: 30%;">
+                                <a
+                                href="<?= Utility::site_url("dashboard.php?method=get&action=remove-storage&storage-id=$storage->id") ?>" 
+                                class="btn btn-danger" 
+                                onclick="return confirm('با حذف انبار تمامی اطلاعات ثبت شده محصولات در انبار مورد نظر حذف می شود آیا موافقید؟')"
+                                >حذف</a>
+                 
                                 <button data-sid="<?= $storage->id ?>" class="btn btn-info edit-button">ویرایش</button>
+                                <a href="<?= Utility::site_url("dashboard.php?page=storage-products&storage-id={$storage->id}") ?>" class="btn btn-secandry" style="width: auto;">محصولات</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

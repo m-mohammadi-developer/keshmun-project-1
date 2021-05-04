@@ -11,6 +11,8 @@ if (!$session->isUserLoggedIn()) {
     Utility::redirect('index.php');
 }
 
+
+// check and handle post methods
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_GET['action'] ?? '';
 
@@ -94,7 +96,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     }
+
+
+
 }
+
+// check and handle get actions
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'get') {
+    $action = $_GET['action'] ?? '';
+
+    if ($action == 'remove-storage') {
+        $storage_id = $_GET['storage-id'] ?? '';
+
+        if (!empty($storage_id) && is_numeric($storage_id)) {
+
+            if ($storage = Storage::findById($storage_id)) {
+
+                $storage->delete();
+                Utility::redirect('dashboard.php?page=storages');
+
+            }
+
+
+        }
+    }
+
+}
+
 
 
 
