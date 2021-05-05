@@ -14,7 +14,9 @@
 
 
     <?php
+
     use Classes\Utility;
+
     include Classes\Utility::view('partials.header');
     ?>
 
@@ -86,7 +88,7 @@
                             </div>
                         </div>
                         <div class="field-row">
-                            <div class="field-title"><a style="text-decoration: none;" href="<?= '#' ?>">ثبت نام کنید!</a></div>
+                            <div class="field-title"><a style="text-decoration: none;" href="<?= '#' ?>">ذخیره و بستن</a></div>
                             <div class="field-content">
                                 <input type="submit" name="edit-product" value=" ویرایش ">
                             </div>
