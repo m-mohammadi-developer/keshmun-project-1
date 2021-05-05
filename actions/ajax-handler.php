@@ -8,13 +8,14 @@ use Classes\Utility;
 
 $action = $_POST['action'] ?? '';
 
-
+// default error
 $error_response = [
     'type' => 'error',
     'data' => 'مشکلی در اجرای درخواست بوجود آمد'
 ];
 
 switch ($action) {
+    // to add product to storage
     case 'relate_product_storage':
 
         $product_id = $_POST['product_id'] ?? null;
@@ -77,7 +78,7 @@ switch ($action) {
             echo Utility::messageInJson('اطلاعات به درستی دریافت نشد لطفا صفحه را رفرش کرده و دوباره تلاش نمایید');
             return;
         }
-
+        
         $product = Product::findById($product_id);
         if ($product) {
             $product_json = json_encode($product);
