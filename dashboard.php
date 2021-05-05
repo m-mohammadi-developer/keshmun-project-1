@@ -209,6 +209,7 @@ switch ($page) {
 
     case 'storage-products':
         if (isset($_GET['storage-id'])) {
+            // Utility::dd($_GET);
             $products = Storage::findStorageProducts($_GET['storage-id'] ?? 1);
             $storage = Storage::findById($_GET['storage-id'] ?? 1);
             include Utility::view('storage.storage-products');

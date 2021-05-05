@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محصولات</title>
+    <title><?php echo isset($page_title) ? $page_title : 'محصولات' ?></title>
     <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
 
 </head>
@@ -14,7 +14,9 @@
 
 
     <?php
+
     use Classes\Utility;
+
     include Classes\Utility::view('partials.header');
     ?>
 
@@ -86,7 +88,7 @@
                             </div>
                         </div>
                         <div class="field-row">
-                            <div class="field-title"><a style="text-decoration: none;" href="<?= '#' ?>">ثبت نام کنید!</a></div>
+                            <div class="field-title"><a style="text-decoration: none;" href="<?= '#' ?>">ذخیره و بستن</a></div>
                             <div class="field-content">
                                 <input type="submit" name="edit-product" value=" ویرایش ">
                             </div>

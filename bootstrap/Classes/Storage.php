@@ -21,25 +21,35 @@ class Storage extends Main
     {
         global $conn;
         $sql = "select * from storages_products where storage_id = $sotrage_id";
-        $storage_products_pivot = $conn->query($sql);
 
-        // store ids of products
-        $product_ids = [];
-        foreach ($storage_products_pivot as $row) {
-            $product_ids[] = $row->product_id;
-        }
+        try {
+            $storage_products_pivot = $conn->query($sql);
 
-        $storage_products = Product::findAllIn('id', $product_ids);
+            // store ids of products
+            $product_ids = [];
+            foreach ($storage_products_pivot as $row) {
+                $product_ids[] = $row->product_id;
+            }
 
-        foreach ($storage_products as $product) {
-            foreach ($storage_products_pivot as $pivot) {
-                if ($pivot->product_id == $product->id) {
-                    $product->count_in_storage = $pivot->product_count;
+            // if (count($product_ids) == 0) {
+            //     return false;
+            // }
+
+            $storage_products = Product::findAllIn('id', $product_ids);
+
+            foreach ($storage_products as $product) {
+                foreach ($storage_products_pivot as $pivot) {
+                    if ($pivot->product_id == $product->id) {
+                        $product->count_in_storage = $pivot->product_count;
+                    }
                 }
             }
+
+            return $storage_products;
+        } catch (\PDOException $e) {
+            return false;
         }
 
-        return $storage_products;
     }
 
 
