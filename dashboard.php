@@ -158,7 +158,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'get' && $session-
             ])) {
 
                 $storage_product->delete();
-                Utility::redirect('dashboard.php?page=product-storages&product-id=4');
+                Utility::redirect("dashboard.php?page=product-storages&product-id={$product_id}");
+
+            }
+
+
+        }
+    }
+
+    // remove product from storage
+    if ($action == 'remove-storage-product') {
+        $product_id = $_GET['product-id'] ?? '';
+        $storage_id = $_GET['storage-id'] ?? '';
+
+        if (
+            (!empty($product_id) && is_numeric($product_id))
+            &&
+            (!empty($storage_id) && is_numeric($storage_id))
+            ) {
+
+            if ($storage_product = StorageProduct::findWhere([
+                ['storage_id', '=', $storage_id],
+                ['product_id', '=', $product_id]
+            ])) {
+
+                $storage_product->delete();
+                Utility::redirect("dashboard.php?page=storage-products&storage-id={$storage_id}");
 
             }
 

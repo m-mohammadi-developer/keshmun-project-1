@@ -14,6 +14,7 @@
         text-align: center !important;
     }
 </style>
+
 <body>
 
 
@@ -22,8 +23,8 @@
     ?>
 
     <div class="container">
-    <table cellpadding="0" cellspacing="0" width="100%">
-        <h3 style="text-align: center;">مشخصات انبار</h3>
+        <table cellpadding="0" cellspacing="0" width="100%">
+            <h3 style="text-align: center;">مشخصات انبار</h3>
 
             <thead>
                 <tr>
@@ -34,13 +35,13 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if ($storage): ?>
-                <tr>
-                    <td class="first"><?= $storage->id ?></td>
-                    <td><?= $storage->name ?></td>
-                    <td class="table-td-overflow"><?= $storage->address ?></td>
-                    <td><?= $storage->created_at ?></td>
-                </tr>
+                <?php if ($storage) : ?>
+                    <tr>
+                        <td class="first"><?= $storage->id ?></td>
+                        <td><?= $storage->name ?></td>
+                        <td class="table-td-overflow"><?= $storage->address ?></td>
+                        <td><?= $storage->created_at ?></td>
+                    </tr>
                 <?php endif; ?>
 
 
@@ -58,19 +59,28 @@
                     <th>توضیحات</th>
                     <th>تعداد</th>
                     <th>تاریخ ثبت</th>
+                    <th>عملیات</th>
+
                 </tr>
             </thead>
             <tbody>
-                <?php if ($products): ?>
-                <?php foreach ($products as $product): ?>
-                <tr>
-                    <td class="first"><?= $product->id ?></td>
-                    <td><?= $product->name ?></td>
-                    <td class="table-td-overflow"><?= $product->description ?></td>
-                    <td style="border-left: 1px solid white;"><?= $product->count_in_storage ?></td>
-                    <td><?= $product->created_at ?></td>
-                </tr>
-                <?php endforeach; ?>
+                <?php if ($products) : ?>
+                    <?php foreach ($products as $product) : ?>
+                        <tr>
+                            <td class="first"><?= $product->id ?></td>
+                            <td><?= $product->name ?></td>
+                            <td class="table-td-overflow"><?= $product->description ?></td>
+                            <td style="border-left: 1px solid white;"><?= $product->count_in_storage ?></td>
+                            <td><?= $product->created_at ?></td>
+
+                            <td class="center">
+                                <a href="<?= Classes\Utility::site_url("dashboard.php?method=get&action=remove-storage-product&product-id={$product->id}&storage-id={$_GET['storage-id']}") ?>" class="btn btn-danger" onclick="return confirm('با حذف محصول از انبار موافقید؟')">
+                                    حذف از انبار
+                                </a>
+
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endif; ?>
 
 
@@ -78,7 +88,7 @@
         </table>
     </div>
 
-    
+
 
 
 </body>
