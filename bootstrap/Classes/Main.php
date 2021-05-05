@@ -14,21 +14,54 @@ class Main
 
     /*********************** Methods *************************** */
 
+    /************ public methods ************/
 
-    public static function countAll()
+    public function create()
     {
         global $conn;
-        $sql = "SELECT COUNT(*) FROM " . static::$db_name;
+        $properties = static::properties($this);
+
+        $sql = "INSERT INTO ". static::$db_name ." ( ". implode(",", array_keys($properties)) ." )";
+        $sql .= " VALUES (". implode(",", array_values($properties)) .")";
         
-        $result = $conn->conn->query($sql);
-        $count = $result->fetch(\PDO::FETCH_ASSOC);
-        return array_shift($count);
+        return $conn->do($sql, static::propertiesValue($this));
     }
 
-    public static function searchForIn($query, $column)
+
+    public function update()
     {
-        return static::findAllWhere([[$column, 'LIKE', "%{$query}%"]]);
+        global $conn;
+        $properties = static::properties($this);
+
+        // array of property's Keys and ? ;; like property => ?
+        $array = [];
+        foreach ($properties as $key => $value) {
+            $array[] = $key . " = " . $value;
+        }
+        $sql = "UPDATE ". static::$db_name ." set " . implode(", ", $array) . " where ". static::$auto_inc ." = ". $this->id;
+
+        
+        return $conn->do($sql, static::propertiesValue($this));
     }
+
+
+    public function save()
+    {
+        return isset($this->id) ? $this->update() : $this->create();
+    }
+
+
+    public function delete()
+    {
+        global $conn;
+        $sql = "DELETE FROM ". static::$db_name . " where ". static::$auto_inc ." = ". $this->id;
+        
+        return $conn->do($sql);
+    }
+
+
+    /************ public static methods ************/
+
     /**
      * Find All Rows in Database belongs to this class
      */
@@ -107,6 +140,8 @@ class Main
     }
 
 
+    /************ protected methods :: to deal with connection ************/
+    
     /**
      * DB Connectors
      */
@@ -121,61 +156,14 @@ class Main
         global $conn;
         return $conn->select($sql, $values, $class);
     }
-    /** **** */
-
-
-    public function create()
-    {
-        global $conn;
-        $properties = static::properties($this);
-
-        $sql = "INSERT INTO ". static::$db_name ." ( ". implode(",", array_keys($properties)) ." )";
-        $sql .= " VALUES (". implode(",", array_values($properties)) .")";
-        
-        return $conn->do($sql, static::propertiesValue($this));
-    }
-
-
-    public function update()
-    {
-        global $conn;
-        $properties = static::properties($this);
-
-        // array of property's Keys and ? ;; like property => ?
-        $array = [];
-        foreach ($properties as $key => $value) {
-            $array[] = $key . " = " . $value;
-        }
-        $sql = "UPDATE ". static::$db_name ." set " . implode(", ", $array) . " where ". static::$auto_inc ." = ". $this->id;
-
-        
-        return $conn->do($sql, static::propertiesValue($this));
-    }
-
-
-    public function save()
-    {
-        return isset($this->id) ? $this->update() : $this->create();
-    }
-
-
-    public function delete()
-    {
-        global $conn;
-        $sql = "DELETE FROM ". static::$db_name . " where ". static::$auto_inc ." = ". $this->id;
-        
-        return $conn->do($sql);
-    }
-
-
-
+    
     /************************************** Helper Methods **************************************/
 
-
     /**
-     * get class properties
+     * get class properties : to use when retrieving data from database table 
      */
-    public static function properties($object)
+
+    protected static function properties($object)
     {
         $properties = get_object_vars($object);
 
@@ -192,7 +180,10 @@ class Main
         return $prop_db;
     }
     
-    public static function propertiesValue($object)
+    /**
+     * get class properties's values : to use when retrieving data from database table 
+     */
+    protected static function propertiesValue($object)
     {
         $properties = get_object_vars($object);
 
@@ -208,4 +199,6 @@ class Main
         }
         return $prop_db;
     }
+
+
 }

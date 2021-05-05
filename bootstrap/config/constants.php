@@ -6,5 +6,6 @@ define('SITE_URL', 'http://server.com/keshmun/project-1');
 
 
 $users = [
-    'mohammad' => '$2y$10$Ivdq7cg3JdAoSCANxLfG9eoq1PloCdZL535Gx28MHp4QRSuzAE7yS'
+    'admin' => '$2y$10$Ivdq7cg3JdAoSCANxLfG9eoq1PloCdZL535Gx28MHp4QRSuzAE7yS', // 12345678
+    'mohammad' => '$2y$10$Ivdq7cg3JdAoSCANxLfG9eoq1PloCdZL535Gx28MHp4QRSuzAE7yS', // 12345678
 ];

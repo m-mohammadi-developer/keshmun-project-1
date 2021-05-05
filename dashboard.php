@@ -3,16 +3,18 @@ include "bootstrap/init.php";
 
 use Classes\Product;
 use Classes\Storage;
+use Classes\StorageProduct;
 use Classes\Utility;
 
+// to displauy form errors for Post methods
 $errors = [];
 
+// check for login and if not then exit from page
 if (!$session->isUserLoggedIn()) {
     Utility::redirect('index.php');
     exit();
 }
 
-// Utility::dd($_SESSION);
 
 
 // check and handle post methods
@@ -56,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $session->isUserLoggedIn()) {
             }
         }
     }
-    
+
     if ($action == 'edit-product') {
         if (empty($_POST['product_name'])) {
             $errors['edit-product'][] = 'نام محصول نباید خالی باشد';
@@ -93,76 +95,99 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $session->isUserLoggedIn()) {
             $storage = Storage::findById($_POST['storage_id']);
             $storage->name = $_POST['storage_name'];
             $storage->address = $_POST['storage_address'];
-            
+
             if ($storage->save()) {
                 Utility::redirect('dashboard.php?page=storages');
             }
         }
     }
-
-
-
 }
 
 // check and handle get actions
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'get' && $session->isUserLoggedIn()) {
-    $action = $_GET['action'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['method']) && $session->isUserLoggedIn()) {
 
-    if ($action == 'remove-storage') {
-        $storage_id = $_GET['storage-id'] ?? '';
+    // check for method to be GET
+    if (strtolower($_GET['method']) == 'get') {
+        $action = $_GET['action'] ?? '';
 
-        if (!empty($storage_id) && is_numeric($storage_id)) {
+        // remove storage from database
+        if ($action == 'remove-storage') {
+            $storage_id = $_GET['storage-id'] ?? '';
 
-            if ($storage = Storage::findById($storage_id)) {
-
-                $storage->delete();
-                Utility::redirect('dashboard.php?page=storages');
-
+            if (!empty($storage_id) && is_numeric($storage_id)) {
+                if ($storage = Storage::findById($storage_id)) {
+                    $storage->delete();
+                    Utility::redirect('dashboard.php?page=storages');
+                }
             }
-
-
         }
-    }
 
-    if ($action == 'remove-product') {
-        $product_id = $_GET['product-id'] ?? '';
+        // remove product from database
+        if ($action == 'remove-product') {
+            $product_id = $_GET['product-id'] ?? '';
 
-        if (!empty($product_id) && is_numeric($product_id)) {
-
-            if ($product = Product::findById($product_id)) {
-                
-                $product->delete();
-                Utility::redirect('dashboard.php?page=products');
-
+            if (!empty($product_id) && is_numeric($product_id)) {
+                if ($product = Product::findById($product_id)) {
+                    $product->delete();
+                    Utility::redirect('dashboard.php?page=products');
+                }
             }
-
-
         }
-    }
 
+        // romve product from storage
+        if ($action == 'remove-product-storage') {
+            $product_id = $_GET['product-id'] ?? '';
+            $storage_id = $_GET['storage-id'] ?? '';
+
+            if (
+                (!empty($product_id) && is_numeric($product_id))
+                &&
+                (!empty($storage_id) && is_numeric($storage_id))
+            ) {
+                if ($storage_product = StorageProduct::findWhere([
+                    ['storage_id', '=', $storage_id],
+                    ['product_id', '=', $product_id]
+                ])) {
+                    $storage_product->delete();
+                    Utility::redirect("dashboard.php?page=product-storages&product-id={$product_id}");
+                }
+            }
+        }
+
+        // remove product from storage :: in storage-part
+        if ($action == 'remove-storage-product') {
+            $product_id = $_GET['product-id'] ?? '';
+            $storage_id = $_GET['storage-id'] ?? '';
+
+            if (
+                (!empty($product_id) && is_numeric($product_id))
+                &&
+                (!empty($storage_id) && is_numeric($storage_id))
+            ) {
+                if ($storage_product = StorageProduct::findWhere([
+                    ['storage_id', '=', $storage_id],
+                    ['product_id', '=', $product_id]
+                ])) {
+                    $storage_product->delete();
+                    Utility::redirect("dashboard.php?page=storage-products&storage-id={$storage_id}");
+                }
+            }
+        }
+
+    }
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+// get page and include the view for that page
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $page = $_GET['page'];
 } else {
     $page = '';
 }
 
+// include view
 switch ($page) {
     case 'products':
         $products = Product::findAll();
@@ -208,6 +233,8 @@ switch ($page) {
         include Utility::view('dashboard');
         break;
 
+    // return 404 page as default
     default:
         include Utility::view('404');
+
 }
