@@ -3,6 +3,7 @@ include "bootstrap/init.php";
 
 use Classes\Product;
 use Classes\Storage;
+use Classes\StorageProduct;
 use Classes\Utility;
 
 $errors = [];
@@ -133,6 +134,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'get' && $session-
                 
                 $product->delete();
                 Utility::redirect('dashboard.php?page=products');
+
+            }
+
+
+        }
+    }
+
+    // romve product from storage
+    if ($action == 'remove-product-storage') {
+        $product_id = $_GET['product-id'] ?? '';
+        $storage_id = $_GET['storage-id'] ?? '';
+
+        if (
+            (!empty($product_id) && is_numeric($product_id))
+            &&
+            (!empty($storage_id) && is_numeric($storage_id))
+            ) {
+
+            if ($storage_product = StorageProduct::findWhere([
+                ['storage_id', '=', $storage_id],
+                ['product_id', '=', $product_id]
+            ])) {
+
+                $storage_product->delete();
+                Utility::redirect('dashboard.php?page=product-storages&product-id=4');
 
             }
 

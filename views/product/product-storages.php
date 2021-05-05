@@ -39,6 +39,7 @@
                         <td><?= $product->name ?></td>
                         <td class="table-td-overflow"><?= $product->description ?></td>
                         <td><?= $product->created_at ?></td>
+                        
                     </tr>
                 <?php endif; ?>
 
@@ -57,6 +58,8 @@
                     <th>آدرس</th>
                     <th>تعداد در انبار</th>
                     <th>تاریخ ثبت</th>
+                    <th>عملیات</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +71,16 @@
                             <td class="table-td-overflow"><?= $storage->address ?></td>
                             <td style="border-left: 1px solid white;"><?= $storage->count_in_storage ?></td>
                             <td><?= $storage->created_at ?></td>
+                            
+                            <td class="center">
+                            <a 
+                            href="<?= Classes\Utility::site_url("dashboard.php?method=get&action=remove-product-storage&storage-id={$storage->id}&product-id={$_GET['product-id']}") ?>" class="btn btn-danger" 
+                            onclick="return confirm('با حذف محصول از انبار موافقید؟')">
+                            حذف از انبار
+                            </a>
+                            
+                            </td>
+
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
