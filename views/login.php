@@ -24,20 +24,23 @@
             if (isset($errors['login_error'])) {
                 echo $errors['login_error'];
             }
-           ?>
+            ?>
 
         </div>
-        <div class="form">
-            <form class="login-form" method="POST" action="<?php Classes\Utility::site_url('index.php?action=login') ?>">
-                <!-- <img src="https://fakeimg.pl/100x100/?text=Logo" /> -->
-                <input type="hidden" name="action" value="login" />
 
-                <input type="text" placeholder="نام کاربری" name="username" />
-                <input type="password" placeholder="پسورد" name="password" />
-                <button class="btn" type="submit">ورود</button>
-                <p class="message">اکانت دارید ندارید؟<a href="#">ثبت نام</a></p>
-            </form>
+        <div class="container center">
+            <div class="form">
+                <form class="login-form" method="POST" action="<?php Classes\Utility::site_url('index.php?action=login') ?>">
+                    <!-- <img src="https://fakeimg.pl/100x100/?text=Logo" /> -->
+                    <input type="hidden" name="action" value="login" />
+
+                    <input type="text" placeholder="نام کاربری" name="username" />
+                    <input type="password" placeholder="پسورد" name="password" />
+                    <button class="btn" type="submit">ورود</button>
+                </form>
+            </div>
         </div>
+
     </div>
 </body>
 
