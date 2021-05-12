@@ -1,5 +1,5 @@
 <header class="header">
-    <a href="" class="logo">
+    <a href="<?= Classes\Utility::site_url("dashboard.php") ?>" class="logo">
         <img src="assets/images/logo.png" alt="keshmun" height="22px;">
     </a>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
