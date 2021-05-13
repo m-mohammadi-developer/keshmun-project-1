@@ -40,6 +40,7 @@ class Product extends Main
                 foreach ($storage_products_pivot as $pivot) {
                     if ($pivot->storage_id == $storage->id) {
                         $storage->count_in_storage = $pivot->product_count;
+                        $storage->date_addition_to_pivot = $pivot->created_at;
                     }
                 }
             }

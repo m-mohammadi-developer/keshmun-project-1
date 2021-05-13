@@ -11,7 +11,7 @@
 
 </head>
 <style>
-    
+
 </style>
 
 <body>
@@ -36,7 +36,7 @@
                             <h6 class="form-group">
                                 توجه : در صورتی که کالای مورد نظر در انبار ثبت شده باشد تعداد آن آپدیت می شود
                             </h6>
-                            
+
 
                             <div class="col-12">
                                 <fieldset class="form-group">
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-12">
                                 <fieldset class="form-group">
-                                    <label class="form-label" for="input5">انتخاب انبار</label>
+                                    <label class="form-label" for="storage">انتخاب انبار</label>
                                     <?php if ($products) : ?>
                                         <select name="storage_id" class="form-control">
                                             <?php foreach ($storages as $storage) : ?>
@@ -69,9 +69,29 @@
 
                             <div class="col-12">
                                 <fieldset class="form-group">
-                                    <label class="form-label" for="input5">تعداد موجود</label>
+                                    <label class="form-label" for="count">تعداد موجود</label>
                                     <input type="number" name="product_count" class="form-control" placeholder="تعداد محصول موجود در انبار را وارد کنید" required>
                                 </fieldset>
+                            </div>
+
+                            <div class="col-12">
+                                <fieldset class="form-group">
+                                    <label class="form-label" for="date">تاریخ ثبت محصول در انبار (روی آیکون کلیک کنید)</label>
+                                    <input type="date" name="date" class="form-control">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label class="form-label" for="time">ساعت ثبت محصول در انبار (روی آیکون کلیک کنید)</label>
+                                    <input type="time" name="time" class="form-control">
+                                </fieldset>
+                                <h6 class="form-group">
+                                        توجه : این تاریخ مربوط به ثبت شدن کالا در انبار می باشد یعنی زمانی که کالا به انبار افزوده شده است
+                                        <br />
+                                        توجه : تاریخ وارد شده فقط بر روی آیتم های وارد شده که قبلا ثبت نشده اعمال می شود و امکان تغییر آن وجود نخواهد داشت
+                                        <br />
+                                        توجه : تاریخ وارد شده باید کوچکتر از تاریخ الان باشد
+                                        <br />
+                                        توجه : در صورتی که تاریخ و ساعت وارد نشود زمان حال در نظر گرفته میشود
+                                </h6>
                             </div>
                         </div>
                         <div>
