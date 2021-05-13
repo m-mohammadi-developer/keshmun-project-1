@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set('Asia/Tehran');
 
 session_start();
 ob_start();
