@@ -31,7 +31,7 @@
                     <th>آیدی</th>
                     <th>نام</th>
                     <th>آدرس</th>
-                    <th>تاریخ ثبت</th>
+                    <th>تاریخ ثبت(در سامانه)</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +58,7 @@
                     <th>نام</th>
                     <th>توضیحات</th>
                     <th>تعداد</th>
-                    <th>تاریخ ثبت</th>
+                    <th>تاریخ افزودن به این انبار</th>
                     <th>عملیات</th>
 
                 </tr>
@@ -71,7 +71,7 @@
                             <td><?= $product->name ?></td>
                             <td class="table-td-overflow"><?= $product->description ?></td>
                             <td style="border-left: 1px solid white;"><?= $product->count_in_storage ?></td>
-                            <td><?= $product->created_at ?></td>
+                            <td><?= $product->date_addition_to_pivot ?></td>
 
                             <td class="center">
                                 <a href="<?= Classes\Utility::site_url("dashboard.php?method=get&action=remove-storage-product&product-id={$product->id}&storage-id={$_GET['storage-id']}") ?>" class="btn btn-danger" onclick="return confirm('با حذف محصول از انبار موافقید؟')">

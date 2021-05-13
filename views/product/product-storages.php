@@ -29,7 +29,7 @@
                     <th>آیدی</th>
                     <th>نام</th>
                     <th>آدرس</th>
-                    <th>تاریخ ثبت</th>
+                    <th>تاریخ ثبت(در سامانه)</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,7 +57,7 @@
                     <th>نام</th>
                     <th>آدرس</th>
                     <th>تعداد در انبار</th>
-                    <th>تاریخ ثبت</th>
+                    <th>تاریخ افزودن این محصول در انبار</th>
                     <th>عملیات</th>
 
                 </tr>
@@ -70,7 +70,7 @@
                             <td><?= $storage->name ?></td>
                             <td class="table-td-overflow"><?= $storage->address ?></td>
                             <td style="border-left: 1px solid white;"><?= $storage->count_in_storage ?></td>
-                            <td><?= $storage->created_at ?></td>
+                            <td><?= $storage->date_addition_to_pivot ?></td>
                             
                             <td class="center">
                             <a 
