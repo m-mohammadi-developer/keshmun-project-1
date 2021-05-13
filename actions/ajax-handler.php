@@ -6,6 +6,8 @@ use Classes\Storage;
 use Classes\StorageProduct;
 use Classes\Utility;
 
+
+
 $action = $_POST['action'] ?? '';
 
 // default error
@@ -13,6 +15,13 @@ $error_response = [
     'type' => 'error',
     'data' => 'مشکلی در اجرای درخواست بوجود آمد'
 ];
+
+// check if the request is ajax request
+
+if (!Utility::isAjaxRequest()) {
+    echo Utility::messageInJson('درخواست نامعتبر! باید به صورت ناهمسان ارسال شود');
+    return ;
+}
 
 switch ($action) {
         // to add product to storage

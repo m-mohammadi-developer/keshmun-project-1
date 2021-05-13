@@ -1,6 +1,7 @@
 <?php
-
 namespace Classes;
+
+defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 
 class Main
 {

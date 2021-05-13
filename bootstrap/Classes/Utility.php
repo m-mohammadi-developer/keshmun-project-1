@@ -1,7 +1,7 @@
 <?php
-
 namespace Classes;
 
+defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 class Utility
 {
 
@@ -47,5 +47,13 @@ class Utility
             'data' => $message
         ];
         return json_encode($message);
+    }
+
+    public static function isAjaxRequest()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' ) {
+            return true;
+        }
+        return false;
     }
 }

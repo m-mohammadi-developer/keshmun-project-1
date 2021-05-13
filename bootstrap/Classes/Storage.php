@@ -1,7 +1,7 @@
 <?php
-
 namespace Classes;
 
+defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 class Storage extends Main
 {
     protected static $class_name = 'Classes\Storage';
