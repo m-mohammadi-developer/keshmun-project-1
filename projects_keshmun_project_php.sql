@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2021 at 07:49 PM
+-- Generation Time: May 16, 2021 at 09:06 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -45,7 +45,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `created_at`) VALUES
 (10, 'دوچرخه دیسک دار', 'این دوچرخه بسیار پیشرفته بوده و در جهت حفظ سلامتی به شما کمک خواهد کرد', '2021-05-05 22:06:34'),
 (11, 'کامپیوتر', 'یک محصول بسیار کاربردی و مناسب برنامه نویسی', '2021-05-05 22:07:08'),
 (12, 'چراغ قوه', 'بسیار قوی و بسیار عالی در حد چراخ خودرو', '2021-05-05 22:07:16'),
-(13, 'کتاب ریاضی 2', 'خیلی خوب و سنگین مخصوص خواندن', '2021-05-05 22:07:24');
+(16, 'نام محصول 1', 'dfsfd', '2021-05-16 23:25:55');
 
 -- --------------------------------------------------------
 
@@ -73,8 +73,7 @@ INSERT INTO `storages` (`id`, `name`, `address`, `created_at`) VALUES
 (10, 'انبار تهران منطقه 5', 'تهران - منطقه 5', '2021-05-05 22:08:54'),
 (11, 'انبار تهران منطقه 6', 'تهران - منطقه 6', '2021-05-05 22:09:03'),
 (12, 'انبار تهران منطقه 7', 'تهران - منطقه 7', '2021-05-05 22:09:11'),
-(13, 'انبار تهران منطقه 8', 'تهران - منطقه 8', '2021-05-05 22:09:19'),
-(14, 'انبار تهران منطقه 9', 'تهران - منطقه 9', '2021-05-05 22:09:28');
+(13, 'انبار تهران منطقه 8', 'تهران - منطقه 7', '2021-05-05 22:09:19');
 
 -- --------------------------------------------------------
 
@@ -86,28 +85,22 @@ CREATE TABLE `storages_products` (
   `id` int(10) UNSIGNED NOT NULL,
   `storage_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
-  `product_count` int(10) UNSIGNED NOT NULL
+  `product_count` int(10) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `storages_products`
 --
 
-INSERT INTO `storages_products` (`id`, `storage_id`, `product_id`, `product_count`) VALUES
-(10, 5, 7, 150),
-(11, 7, 7, 21),
-(12, 11, 7, 6),
-(13, 7, 9, 85),
-(14, 7, 10, 69),
-(15, 11, 10, 21),
-(17, 10, 12, 25),
-(19, 12, 13, 41),
-(20, 12, 10, 69),
-(21, 13, 13, 21),
-(22, 5, 13, 9),
-(23, 6, 8, 500),
-(24, 14, 10, 60),
-(25, 10, 13, 92);
+INSERT INTO `storages_products` (`id`, `storage_id`, `product_id`, `product_count`, `created_at`) VALUES
+(52, 9, 10, 23, '2021-05-16 23:33:00'),
+(53, 11, 10, 15, '2021-05-16 23:33:00'),
+(54, 12, 12, 51, '2021-05-16 23:33:00'),
+(55, 13, 10, 98, '2021-04-28 23:33:00'),
+(56, 7, 10, 15, '2021-05-16 11:31:48'),
+(57, 10, 10, 15, '2021-05-16 23:35:00'),
+(58, 9, 8, 51, '2021-05-06 23:36:00');
 
 --
 -- Indexes for dumped tables
@@ -139,7 +132,7 @@ ALTER TABLE `storages_products`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `storages`
@@ -151,7 +144,7 @@ ALTER TABLE `storages`
 -- AUTO_INCREMENT for table `storages_products`
 --
 ALTER TABLE `storages_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
