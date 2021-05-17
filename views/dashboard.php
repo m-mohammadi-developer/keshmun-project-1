@@ -8,7 +8,7 @@
     
     <title><?php echo isset($page_title) ? $page_title : 'داشبورد مدیریت' ?></title>
 
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/styles.css'); ?>" />
 
  
 </head>
@@ -17,7 +17,7 @@
 
 
     <?php
-    include Classes\Utility::view('partials.header');
+    include view('partials.header');
     ?>
     <div class="container">
         <div id="form-main-container">

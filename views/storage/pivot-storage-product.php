@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'انبار داری' ?></title>
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/styles.css'); ?>" />
 
 
 </head>
@@ -21,10 +21,10 @@
 
     use Classes\Utility;
 
-    include Classes\Utility::view('partials.header');
+    include view('partials.header');
     ?>
     <div class="container">
-        <form id="form-relate" method="POST" action="<?= Classes\Utility::site_url('/actions/ajax-handler.php') ?>">
+        <form id="form-relate" method="POST" action="<?= site_url('/actions/ajax-handler.php') ?>">
             <div id="form-main-container">
                 <div id="form-area">
                     <div id="form-title">

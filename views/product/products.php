@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'محصولات' ?></title>
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/styles.css'); ?>" />
 
 </head>
 
@@ -17,7 +17,7 @@
 
     use Classes\Utility;
 
-    include Classes\Utility::view('partials.header');
+    include view('partials.header');
     ?>
 
     <?php if (!empty($errors['edit-product'])) : ?>
@@ -53,9 +53,9 @@
                             <td style="width: 160px;"><?= $product->created_at ?></td>
 
                             <td>
-                                <a href="<?= Utility::site_url("dashboard.php?method=get&action=remove-product&product-id=$product->id") ?>" class="btn btn-danger" onclick="return confirm('با حذف محصول تمامی اطلاعات ثبت شده محصول در انبار های ثبت شده حذف می شود آیا موافقید؟')">حذف</a>
+                                <a href="<?= site_url("dashboard.php?method=get&action=remove-product&product-id=$product->id") ?>" class="btn btn-danger" onclick="return confirm('با حذف محصول تمامی اطلاعات ثبت شده محصول در انبار های ثبت شده حذف می شود آیا موافقید؟')">حذف</a>
                                 <button data-prid="<?= $product->id ?>" class="btn btn-info edit-button">ویرایش</button>
-                                <a href="<?= Utility::site_url("dashboard.php?page=product-storages&product-id={$product->id}") ?>" class="btn btn-secandry" style="width: auto;">انبار ها</a>
+                                <a href="<?= site_url("dashboard.php?page=product-storages&product-id={$product->id}") ?>" class="btn btn-secandry" style="width: auto;">انبار ها</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -73,7 +73,7 @@
                 <span class="close">x</span>
                 <h3 class="modal-title">ویرایش محصول</h3>
                 <div class="modal-content">
-                    <form id='editProduct' action="<?= Classes\Utility::site_url('dashboard.php?action=edit-product&page=products') ?>" method="post">
+                    <form id='editProduct' action="<?= site_url('dashboard.php?action=edit-product&page=products') ?>" method="post">
                         <input type="hidden" id="p-id" name="product_id" value="">
                         <div class="field-row">
                             <div class="field-title">نام محصول</div>
@@ -116,7 +116,7 @@
 
             // ajax request to get product by its id
             $.ajax({
-                url: '<?= Classes\Utility::site_url('/actions/ajax-handler.php') ?>',
+                url: '<?= site_url('/actions/ajax-handler.php') ?>',
                 method: 'POST',
                 data: {
                     product_id: btn.attr('data-prid'),

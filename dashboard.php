@@ -11,7 +11,7 @@ $errors = [];
 
 // check for login and if not then exit from page
 if (!$session->isUserLoggedIn()) {
-    Utility::redirect('index.php');
+    redirect('index.php');
     exit();
 }
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $session->isUserLoggedIn()) {
             $product->name = $_POST['product_name'];
             $product->description = $_POST['product_description'];
             if ($product->save()) {
-                Utility::redirect('dashboard.php?page=products');
+                redirect('dashboard.php?page=products');
             }
         }
     }
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $session->isUserLoggedIn()) {
             $product->name = $_POST['storage_name'];
             $product->address = $_POST['storage_address'];
             if ($product->save()) {
-                Utility::redirect('dashboard.php?page=storages');
+                redirect('dashboard.php?page=storages');
             }
         }
     }
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $session->isUserLoggedIn()) {
             $product->name = $_POST['product_name'];
             $product->description = $_POST['product_description'];
             if ($product->save()) {
-                Utility::redirect('dashboard.php?page=products');
+                redirect('dashboard.php?page=products');
             }
         }
     }
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $session->isUserLoggedIn()) {
             $storage->address = $_POST['storage_address'];
 
             if ($storage->save()) {
-                Utility::redirect('dashboard.php?page=storages');
+                redirect('dashboard.php?page=storages');
             }
         }
     }
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['method']) && $session->i
             if (!empty($storage_id) && is_numeric($storage_id)) {
                 if ($storage = Storage::findById($storage_id)) {
                     $storage->deleteWithDependencies();
-                    Utility::redirect('dashboard.php?page=storages');
+                    redirect('dashboard.php?page=storages');
                 }
             }
         }
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['method']) && $session->i
             if (!empty($product_id) && is_numeric($product_id)) {
                 if ($product = Product::findById($product_id)) {
                     $product->deleteWithDependencies();
-                    Utility::redirect('dashboard.php?page=products');
+                    redirect('dashboard.php?page=products');
                 }
             }
         }
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['method']) && $session->i
                     ['product_id', '=', $product_id]
                 ])) {
                     $storage_product->delete();
-                    Utility::redirect("dashboard.php?page=product-storages&product-id={$product_id}");
+                    redirect("dashboard.php?page=product-storages&product-id={$product_id}");
                 }
             }
         }
@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['method']) && $session->i
                     ['product_id', '=', $product_id]
                 ])) {
                     $storage_product->delete();
-                    Utility::redirect("dashboard.php?page=storage-products&storage-id={$storage_id}");
+                    redirect("dashboard.php?page=storage-products&storage-id={$storage_id}");
                 }
             }
         }
@@ -191,28 +191,28 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 switch ($page) {
     case 'products':
         $products = Product::findAll();
-        include Utility::view('product.products');
+        include view('product.products');
         break;
 
     case 'add-product':
-        include Utility::view('product.add-product');
+        include view('product.add-product');
         break;
 
     case 'storages':
         $storages = Storage::findAll();
-        include Utility::view('storage.storages');
+        include view('storage.storages');
         break;
 
     case 'add-storage':
-        include Utility::view('storage.add-storage');
+        include view('storage.add-storage');
         break;
 
     case 'storage-products':
         if (isset($_GET['storage-id'])) {
-            // Utility::dd($_GET);
+            // dd($_GET);
             $products = Storage::findStorageProducts($_GET['storage-id'] ?? 1);
             $storage = Storage::findById($_GET['storage-id'] ?? 1);
-            include Utility::view('storage.storage-products');
+            include view('storage.storage-products');
         }
         break;
 
@@ -220,22 +220,22 @@ switch ($page) {
         if (isset($_GET['product-id'])) {
             $storages = Product::findProductStorages($_GET['product-id'] ?? 1);
             $product = Product::findById($_GET['product-id'] ?? 1);
-            include Utility::view('product.product-storages');
+            include view('product.product-storages');
         }
         break;
     case 'pivot-storage-product':
         $storages = Storage::findAll();
         $products = Product::findAll();
-        include Utility::view('storage.pivot-storage-product');
+        include view('storage.pivot-storage-product');
         break;
 
     case '':
     case 'dashboard':
-        include Utility::view('dashboard');
+        include view('dashboard');
         break;
 
     // return 404 page as default
     default:
-        include Utility::view('404');
+        include view('404');
 
 }

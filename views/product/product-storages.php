@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'مدیریت محصول' ?></title>
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/styles.css'); ?>" />
 
 </head>
 <style>
@@ -18,7 +18,7 @@
 <body>
 
 
-    <?php include Classes\Utility::view('partials.header'); ?>
+    <?php include view('partials.header'); ?>
 
     <div class="container">
         <table cellpadding="0" cellspacing="0" width="100%">
@@ -74,7 +74,7 @@
                             
                             <td class="center">
                             <a 
-                            href="<?= Classes\Utility::site_url("dashboard.php?method=get&action=remove-product-storage&storage-id={$storage->id}&product-id={$_GET['product-id']}") ?>" class="btn btn-danger" 
+                            href="<?= site_url("dashboard.php?method=get&action=remove-product-storage&storage-id={$storage->id}&product-id={$_GET['product-id']}") ?>" class="btn btn-danger" 
                             onclick="return confirm('با حذف محصول از انبار موافقید؟')">
                             حذف از انبار
                             </a>

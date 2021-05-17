@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'انبار ها' ?></title>
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/styles.css'); ?>" />
 
 </head>
 
@@ -15,7 +15,7 @@
 
     <?php
     use Classes\Utility;
-    include Classes\Utility::view('partials.header');
+    include view('partials.header');
     ?>
 
     <?php if (!empty($errors['edit-storage'])) : ?>
@@ -51,13 +51,13 @@
                             <td style="width: 18%;"><?= $storage->created_at ?></td>
                             <td style="width: 30%;">
                                 <a
-                                href="<?= Utility::site_url("dashboard.php?method=get&action=remove-storage&storage-id=$storage->id") ?>" 
+                                href="<?= site_url("dashboard.php?method=get&action=remove-storage&storage-id=$storage->id") ?>" 
                                 class="btn btn-danger" 
                                 onclick="return confirm('با حذف انبار تمامی اطلاعات ثبت شده محصولات در انبار مورد نظر حذف می شود آیا موافقید؟')"
                                 >حذف</a>
                  
                                 <button data-sid="<?= $storage->id ?>" class="btn btn-info edit-button">ویرایش</button>
-                                <a href="<?= Utility::site_url("dashboard.php?page=storage-products&storage-id={$storage->id}") ?>" class="btn btn-secandry" style="width: auto;">محصولات</a>
+                                <a href="<?= site_url("dashboard.php?page=storage-products&storage-id={$storage->id}") ?>" class="btn btn-secandry" style="width: auto;">محصولات</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -74,7 +74,7 @@
                 <span class="close">x</span>
                 <h3 class="modal-title">ویرایش انبار</h3>
                 <div class="modal-content">
-                    <form id='editStorage' action="<?= Classes\Utility::site_url('dashboard.php?action=edit-storage&page=storages') ?>" method="post">
+                    <form id='editStorage' action="<?= site_url('dashboard.php?action=edit-storage&page=storages') ?>" method="post">
                         <input type="hidden" id="s-id" name="storage_id" value="">
                         <div class="field-row">
                             <div class="field-title">نام انبار</div>
@@ -115,7 +115,7 @@
 
             // ajax request to get product by its id
             $.ajax({
-                url: '<?= Classes\Utility::site_url('/actions/ajax-handler.php') ?>',
+                url: '<?= site_url('/actions/ajax-handler.php') ?>',
                 method: 'POST',
                 data: {
                     storage_id: btn.attr('data-sid'),

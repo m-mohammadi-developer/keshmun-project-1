@@ -8,7 +8,7 @@
     <title>
         <?= (isset($page_title) && !empty($page_title)) ? $page_title : 'ورود'; ?>
     </title>
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/styles.css'); ?>" />
    
 </head>
 

@@ -2,7 +2,7 @@
 
 namespace Classes\Interfaces;
 
-abstract class ShouldUseDatabase
+abstract class ModelInterface
 {
     protected static $auto_inc = 'id';
     protected static $class_name;

@@ -8,15 +8,15 @@
     <title>
         <?= (isset($page_title) && !empty($page_title)) ? $page_title : 'ورود'; ?>
     </title>
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/login.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/styles.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/login.css'); ?>" />
 
 
 
 </head>
 
 <body>
-    <?php include Classes\Utility::view('partials.header'); ?>
+    <?php include view('partials.header'); ?>
 
     <div class="login-page">
         <div style="text-align: center;color: red;">
@@ -30,7 +30,7 @@
 
         <div class="container center">
             <div class="form">
-                <form class="login-form" method="POST" action="<?php Classes\Utility::site_url('index.php?action=login') ?>">
+                <form class="login-form" method="POST" action="<?php site_url('index.php?action=login') ?>">
                     <!-- <img src="https://fakeimg.pl/100x100/?text=Logo" /> -->
                     <input type="hidden" name="action" value="login" />
 

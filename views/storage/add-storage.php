@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'افزودن انبار' ?></title>
-    <link rel="stylesheet" href="<?= Classes\Utility::assets('css/styles.css'); ?>" />
+    <link rel="stylesheet" href="<?= assets('css/styles.css'); ?>" />
 
 
 </head>
@@ -15,10 +15,10 @@
 
 
     <?php
-    include Classes\Utility::view('partials.header');
+    include view('partials.header');
     ?>
     <div class="container">
-        <form method="POST" action="<?= Classes\Utility::site_url('dashboard.php?action=add-storage&page=add-storage') ?>">
+        <form method="POST" action="<?= site_url('dashboard.php?action=add-storage&page=add-storage') ?>">
             <div id="form-main-container">
                 <div id="form-area">
                     <div id="form-title">

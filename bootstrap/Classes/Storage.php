@@ -2,10 +2,10 @@
 namespace Classes;
 
 use Classes\Traits\DatabaseTrait;
-use Classes\Interfaces\ShouldUseDatabase;
+use Classes\Interfaces\ModelInterface;
 
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>"); 
-class Storage extends ShouldUseDatabase
+class Storage extends ModelInterface
 {
     use DatabaseTrait;
 
