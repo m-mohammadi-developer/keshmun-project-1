@@ -1,10 +1,19 @@
 <?php
 namespace Classes;
 
+use Classes\Intefaces\DatabaseInterface;
+
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 
 class Main
 {
+    /**
+     * use for save database instanse for static and none-static methods
+     *
+     * @var DatabaseInterface
+     */
+    protected static $conn = null;
+
     protected static $class_name;
     protected static $db_name;
     protected static $auto_inc = 'id';
@@ -15,23 +24,32 @@ class Main
 
     /*********************** Methods *************************** */
 
+    /**
+     * get Instance of databse and set it to $conn class property
+     *
+     * @param DatabaseInterface $db_instance
+     * @return void
+     */
+    public static function injectConnection(DatabaseInterface $db_instance)
+    {
+        static::$conn = $db_instance;
+    }
+
     /************ public methods ************/
 
     public function create()
     {
-        global $conn;
         $properties = static::properties($this);
 
         $sql = "INSERT INTO ". static::$db_name ." ( ". implode(",", array_keys($properties)) ." )";
         $sql .= " VALUES (". implode(",", array_values($properties)) .")";
         
-        return $conn->do($sql, static::propertiesValue($this));
+        return static::$conn->do($sql, static::propertiesValue($this));
     }
 
 
     public function update()
     {
-        global $conn;
         $properties = static::properties($this);
 
         // array of property's Keys and ? ;; like property => ?
@@ -42,7 +60,7 @@ class Main
         $sql = "UPDATE ". static::$db_name ." set " . implode(", ", $array) . " where ". static::$auto_inc ." = ". $this->id;
 
         
-        return $conn->do($sql, static::propertiesValue($this));
+        return static::$conn->do($sql, static::propertiesValue($this));
     }
 
 
@@ -54,10 +72,9 @@ class Main
 
     public function delete()
     {
-        global $conn;
         $sql = "DELETE FROM ". static::$db_name . " where ". static::$auto_inc ." = ". $this->id;
         
-        return $conn->do($sql);
+        return static::$conn->do($sql);
     }
 
 
@@ -148,14 +165,12 @@ class Main
      */
     protected static function findAllQuery(string $sql, array $values = [], $class)
     {
-        global $conn;
-        return $conn->selectAll($sql, $values, $class);
+        return static::$conn->selectAll($sql, $values, $class);
     }
 
     protected static function findQuery(string $sql, array $values = [], $class)
     {
-        global $conn;
-        return $conn->select($sql, $values, $class);
+        return static::$conn->select($sql, $values, $class);
     }
     
     /************************************** Helper Methods **************************************/

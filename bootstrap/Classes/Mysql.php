@@ -4,8 +4,9 @@ namespace Classes;
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 
 use PDO;
+use Classes\Intefaces\DatabaseInterface;
 
-class Database
+class Mysql implements DatabaseInterface
 {
 
     private $host = 'localhost';
@@ -32,6 +33,7 @@ class Database
         } catch (\PDOException $e) {
             die("Database Failed :: " . $e->getMessage());
         }
+        return $this;
     }
 
     /***
