@@ -9,6 +9,7 @@ Trait DatabaseTrait
 {
     /**
      * use for save database instanse for static and none-static methods
+     * used for singleton pattern
      *
      * @var DatabaseInterface
      */
