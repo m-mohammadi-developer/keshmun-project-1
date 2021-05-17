@@ -1,7 +1,7 @@
 <?php
-namespace Classes\Traits;
+namespace App\Traits;
 
-use Classes\Interfaces\DatabaseInterface;
+use App\Interfaces\DatabaseInterface;
 
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 

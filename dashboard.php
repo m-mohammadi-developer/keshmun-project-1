@@ -1,9 +1,9 @@
 <?php
 include "bootstrap/init.php";
 
-use Classes\Models\Product;
-use Classes\Models\Storage;
-use Classes\Models\StorageProduct;
+use App\Models\Product;
+use App\Models\Storage;
+use App\Models\StorageProduct;
 
 // to displauy form errors for Post methods
 $errors = [];

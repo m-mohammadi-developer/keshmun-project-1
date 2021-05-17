@@ -5,21 +5,21 @@ date_default_timezone_set('Asia/Tehran');
 session_start();
 ob_start();
 
-include "config/constants.php";
-include "config/config.php";
+include "Config/constants.php";
+include "Config/config.php";
 
 
 // autloading classes
 spl_autoload_register(function ($class_name) {
     $file = explode('\\', $class_name);
-    $file_path = 'bootstrap' . DS . implode('/', $file) . '.php';
+    $file_path = implode('/', $file) . '.php';
     require_once SITE_ROOT . DS .  $file_path;
 }); 
 
 
-use Classes\Utilities\Session;
-use Classes\Utilities\Mysql;
-use Classes\Traits\DatabaseTrait;
+use App\Utilities\Session;
+use App\Utilities\Mysql;
+use App\Traits\DatabaseTrait;
 
 // global variables
 $session = new Session($users);

@@ -15,7 +15,7 @@
 
     <?php
 
-    use Classes\Utility;
+    use App\Utility;
 
     include view('partials.header');
     ?>

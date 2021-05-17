@@ -1,5 +1,5 @@
 <?php
-namespace Classes\Utilities;
+namespace App\Utilities;
 
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 class Utility
