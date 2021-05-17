@@ -13,7 +13,7 @@ include "Config/config.php";
 spl_autoload_register(function ($class_name) {
     $file = explode('\\', $class_name);
     $file_path = implode('/', $file) . '.php';
-    require_once SITE_ROOT . DS .  $file_path;
+    require_once __DIR__ . '/../' .  $file_path;
 }); 
 
 
