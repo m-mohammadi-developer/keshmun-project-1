@@ -1,5 +1,5 @@
 <?php 
-namespace Classes;
+namespace Classes\Models;
 
 use Classes\Traits\DatabaseTrait;
 use Classes\Interfaces\ModelInterface;
@@ -9,7 +9,7 @@ class StorageProduct extends ModelInterface
 {
     use DatabaseTrait;
     
-    protected static $class_name = 'Classes\StorageProduct';
+    protected static $class_name = 'Classes\Models\StorageProduct';
     protected static $db_name = 'storages_products';
     protected static $auto_inc = 'id';
 

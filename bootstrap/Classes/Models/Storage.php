@@ -1,15 +1,16 @@
 <?php
-namespace Classes;
+namespace Classes\Models;
 
 use Classes\Traits\DatabaseTrait;
 use Classes\Interfaces\ModelInterface;
 
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>"); 
+
 class Storage extends ModelInterface
 {
     use DatabaseTrait;
 
-    protected static $class_name = 'Classes\Storage';
+    protected static $class_name = 'Classes\Models\Storage';
     protected static $db_name = 'storages';
     protected static $auto_inc = 'id';
 

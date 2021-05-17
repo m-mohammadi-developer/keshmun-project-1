@@ -1,7 +1,7 @@
 <?php
 
 
-use Classes\Utility;
+use Classes\Utilities\Utility;
 
 function view($name, $bySlash = false)
 {

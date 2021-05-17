@@ -1,11 +1,9 @@
 <?php
 include "../bootstrap/init.php";
 
-use Classes\Product;
-use Classes\Storage;
-use Classes\StorageProduct;
-use Classes\Utility;
-
+use Classes\Models\Product;
+use Classes\Models\Storage;
+use Classes\Models\StorageProduct;
 
 
 $action = $_POST['action'] ?? '';
@@ -18,8 +16,8 @@ $error_response = [
 
 // check if the request is ajax request
 
-if (!Utility::isAjaxRequest()) {
-    echo Utility::messageInJson('درخواست نامعتبر! باید به صورت ناهمسان ارسال شود');
+if (!isAjaxRequest()) {
+    echo messageInJson('درخواست نامعتبر! باید به صورت ناهمسان ارسال شود');
     return ;
 }
 
@@ -33,17 +31,17 @@ switch ($action) {
 
         // validate the inputs
         if (empty($product_id) || !is_numeric($product_id) || $product_id < 1) {
-            echo Utility::messageInJson('لطفا فیلد محصول را به درستی انتخاب کنید');
+            echo messageInJson('لطفا فیلد محصول را به درستی انتخاب کنید');
             return;
         }
         if (empty($storage_id) || !is_numeric($storage_id) || $storage_id < 1) {
-            echo Utility::messageInJson('لطفا فیلد انبار را به درستی انتخاب کنید');
+            echo messageInJson('لطفا فیلد انبار را به درستی انتخاب کنید');
             return;
         }
         if (
             empty($product_count) || !is_numeric($product_count) || $product_count < 1 || $product_count > 100000000
         ) {
-            echo Utility::messageInJson('لطفا فیلد تعداد را به درستی وارد نمایید');
+            echo messageInJson('لطفا فیلد تعداد را به درستی وارد نمایید');
             return;
         }
 
@@ -83,7 +81,7 @@ switch ($action) {
             $date_time = (string)$date . " " . (string)$time;
             // validate it to Not be greater than now
             if ($date > $now_date) {
-                echo Utility::messageInJson('تاریخ به درستی وارد نشده است');
+                echo messageInJson('تاریخ به درستی وارد نشده است');
                 return;
             }
 
@@ -99,10 +97,10 @@ switch ($action) {
         try {
             $storage_product->save();
         } catch (PDOException $e) {
-            echo Utility::messageInJson('مشکلی در ذخیره اطلاعات به وجود آمد');
+            echo messageInJson('مشکلی در ذخیره اطلاعات به وجود آمد');
             return;
         }
-        echo Utility::messageInJson($message, 'success');
+        echo messageInJson($message, 'success');
         return;
 
 
@@ -110,14 +108,14 @@ switch ($action) {
         // validate the inputs
         $product_id = $_POST['product_id'] ?? null;
         if (empty($product_id) || !is_numeric($product_id) || $product_id < 1) {
-            echo Utility::messageInJson('اطلاعات به درستی دریافت نشد لطفا صفحه را رفرش کرده و دوباره تلاش نمایید');
+            echo messageInJson('اطلاعات به درستی دریافت نشد لطفا صفحه را رفرش کرده و دوباره تلاش نمایید');
             return;
         }
 
         $product = Product::findById($product_id);
         if ($product) {
             $product_json = json_encode($product);
-            echo Utility::messageInJson($product_json, 'success');
+            echo messageInJson($product_json, 'success');
             return;
         }
         return;
@@ -126,19 +124,19 @@ switch ($action) {
         // validate the inputs
         $storage_id = $_POST['storage_id'] ?? null;
         if (empty($storage_id) || !is_numeric($storage_id) || $storage_id < 1) {
-            echo Utility::messageInJson('اطلاعات به درستی دریافت نشد لطفا صفحه را رفرش کرده و دوباره تلاش نمایید');
+            echo messageInJson('اطلاعات به درستی دریافت نشد لطفا صفحه را رفرش کرده و دوباره تلاش نمایید');
             return;
         }
 
         $srorage = Storage::findById($storage_id);
         if ($srorage) {
-            echo Utility::messageInJson(json_encode($srorage), 'success');
+            echo messageInJson(json_encode($srorage), 'success');
             return;
         }
         echo json_encode($error_response);
         return;
 
     default:
-        echo Utility::messageInJson('درخواست نامعتبر');
+        echo messageInJson('درخواست نامعتبر');
         return;
 }

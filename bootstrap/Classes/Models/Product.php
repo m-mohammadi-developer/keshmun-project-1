@@ -1,11 +1,10 @@
 <?php
-namespace Classes;
+namespace Classes\Models;
 
 use Classes\Traits\DatabaseTrait;
 use Classes\Interfaces\ModelInterface;
 
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
-
 
 class Product extends ModelInterface
 {
@@ -13,7 +12,7 @@ class Product extends ModelInterface
     
     protected static $auto_inc = 'id';
     protected static $db_name = 'products';
-    protected static $class_name = 'Classes\Product';
+    protected static $class_name = 'Classes\Models\Product';
 
     protected static $db_columns = ['name', 'description', 'created_at'];
 
