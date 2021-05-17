@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['method']) && $session->i
 
             if (!empty($storage_id) && is_numeric($storage_id)) {
                 if ($storage = Storage::findById($storage_id)) {
-                    $storage->delete();
+                    $storage->deleteWithDependencies();
                     Utility::redirect('dashboard.php?page=storages');
                 }
             }
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['method']) && $session->i
 
             if (!empty($product_id) && is_numeric($product_id)) {
                 if ($product = Product::findById($product_id)) {
-                    $product->delete();
+                    $product->deleteWithDependencies();
                     Utility::redirect('dashboard.php?page=products');
                 }
             }
