@@ -1,11 +1,18 @@
 <?php
 namespace Classes;
 
-defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
-class Storage extends Main
+use Classes\Traits\DatabaseTrait;
+use Classes\Interfaces\ShouldUseDatabase;
+
+defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>"); 
+class Storage extends ShouldUseDatabase
 {
+    use DatabaseTrait;
+
     protected static $class_name = 'Classes\Storage';
     protected static $db_name = 'storages';
+    protected static $auto_inc = 'id';
+
 
     protected static $db_columns = ['name', 'address', 'created_at'];
 
@@ -54,10 +61,10 @@ class Storage extends Main
     }
 
 
-    public function delete()
+    public function deleteWithDependencies()
     {
         try {
-            parent::delete();
+            $this->delete();
 
             // remove product's information from pivot table
             $storage_products = StorageProduct::findAllWhere([

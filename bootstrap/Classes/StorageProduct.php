@@ -1,11 +1,18 @@
 <?php 
 namespace Classes;
 
+use Classes\Traits\DatabaseTrait;
+use Classes\Interfaces\ShouldUseDatabase;
+
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
-class StorageProduct extends Main
+class StorageProduct extends ShouldUseDatabase
 {
+    use DatabaseTrait;
+    
     protected static $class_name = 'Classes\StorageProduct';
     protected static $db_name = 'storages_products';
+    protected static $auto_inc = 'id';
+
 
     protected static $db_columns = ['storage_id', 'product_id', 'product_count', 'created_at'];
 

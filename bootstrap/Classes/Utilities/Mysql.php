@@ -1,10 +1,10 @@
 <?php
-namespace Classes;
+namespace Classes\Utilities;
 
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 
 use PDO;
-use Classes\Intefaces\DatabaseInterface;
+use Classes\Interfaces\DatabaseInterface;
 
 class Mysql implements DatabaseInterface
 {

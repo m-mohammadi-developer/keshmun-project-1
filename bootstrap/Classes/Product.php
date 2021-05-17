@@ -1,12 +1,19 @@
 <?php
 namespace Classes;
 
+use Classes\Traits\DatabaseTrait;
+use Classes\Interfaces\ShouldUseDatabase;
+
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 
-class Product extends Main
+
+class Product extends ShouldUseDatabase
 {
-    protected static $class_name = 'Classes\Product';
+    use DatabaseTrait;
+    
+    protected static $auto_inc = 'id';
     protected static $db_name = 'products';
+    protected static $class_name = 'Classes\Product';
 
     protected static $db_columns = ['name', 'description', 'created_at'];
 
@@ -50,10 +57,10 @@ class Product extends Main
         }
     }
 
-    public function delete()
+    public function deleteWithDependencies()
     {
         try {
-            parent::delete();
+            $this->delete();
 
             $storage_products = StorageProduct::findAllWhere([
                 ['product_id', '=', $this->id]

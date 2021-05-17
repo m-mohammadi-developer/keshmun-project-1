@@ -1,6 +1,6 @@
 <?php
 
-use Classes\Main;
+
 
 date_default_timezone_set('Asia/Tehran');
 
@@ -19,8 +19,12 @@ spl_autoload_register(function ($class_name) {
 }); 
 
 
-// global variables
-$session = new Classes\Session($users);
-$conn = new Classes\Mysql(DB_INFO['host'], DB_INFO['user'], DB_INFO['pass'], DB_INFO['name']);
+use Classes\Utilities\Session;
+use Classes\Utilities\Mysql;
+use Classes\Traits\DatabaseTrait;
 
-Main::injectConnection($conn);
+// global variables
+$session = new Session($users);
+$conn = new Mysql(DB_INFO['host'], DB_INFO['user'], DB_INFO['pass'], DB_INFO['name']);
+
+DatabaseTrait::injectConnection($conn);
