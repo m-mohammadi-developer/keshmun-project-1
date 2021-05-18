@@ -25,6 +25,7 @@ use App\Traits\DatabaseTrait;
 $session = new Session($users);
 $conn = new Mysql(DB_INFO['host'], DB_INFO['user'], DB_INFO['pass'], DB_INFO['name']);
 
+
 DatabaseTrait::injectConnection($conn);
 
 include "Helpers/Main.php";
