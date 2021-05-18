@@ -5,8 +5,8 @@ date_default_timezone_set('Asia/Tehran');
 session_start();
 ob_start();
 
-include "Config/constants.php";
-include "Config/config.php";
+include "config/constants.php";
+include "config/config.php";
 
 
 // autloading classes
