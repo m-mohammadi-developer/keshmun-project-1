@@ -2,6 +2,10 @@
 
 namespace App\Interfaces;
 
+/**
+ * All the Database Classes(drivers) We create
+ * Must Implement This Interface
+ */
 interface DatabaseInterface
 {
 

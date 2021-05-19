@@ -6,6 +6,9 @@ defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 use PDO;
 use App\Interfaces\DatabaseInterface;
 
+/**
+ * The Implementation of DatabaseInterface Based On PDO Driver
+ */
 class Mysql implements DatabaseInterface
 {
 

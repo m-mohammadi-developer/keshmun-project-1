@@ -5,6 +5,10 @@ use App\Interfaces\DatabaseInterface;
 
 defined('SITE_URL') OR die("<div style='color:red;'>Permisson Denied!</div>");
 
+/**
+ * The Classes That Use This Trait
+ * Must Implement Model Interface
+ */
 Trait DatabaseTrait
 {
     /**

@@ -1,12 +1,11 @@
 <?php
 
 date_default_timezone_set('Asia/Tehran');
-
 session_start();
 ob_start();
 
-include "config/constants.php";
-include "config/config.php";
+include "Config/constants.php";
+include "Config/config.php";
 
 
 // autloading classes
@@ -25,7 +24,7 @@ use App\Traits\DatabaseTrait;
 $session = new Session($users);
 $conn = new Mysql(DB_INFO['host'], DB_INFO['user'], DB_INFO['pass'], DB_INFO['name']);
 
-
+// inject database connection to the project
 DatabaseTrait::injectConnection($conn);
-
+// the helpers based on Utility Class
 include "Helpers/Main.php";
